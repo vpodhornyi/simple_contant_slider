@@ -1,5 +1,5 @@
 # simple_content_slider
-
+<a href="https://vpodhornyi.github.io/simple_content_slider/">Link to example</a>
 <pre>
 const arg = {
   mainId: 'slider',
