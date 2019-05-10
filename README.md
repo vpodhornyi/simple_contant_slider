@@ -1,4 +1,4 @@
-# simple_contant_slider
+# simple_content_slider
 
 const arg = {
   mainId: 'slider',
