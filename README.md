@@ -2,7 +2,7 @@
 
 <pre>
 const arg = {
-	mainId: 'slider',
+  mainId: 'slider',
   btnClassLeft: 'content-slider__arrow_left',
   btnClassRight: 'content-slider__arrow_right',
   hideBtn: 'content-slider__arrow_hide',
