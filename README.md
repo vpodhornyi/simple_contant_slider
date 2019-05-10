@@ -6,7 +6,7 @@
 <h2>Step 1:</h2>
 <p>Create simple structure in yore html file</p>
 <p>To "content-slider__item" you can put any content of you want</p>
-<html>
+'''html
 <pre>
 <div class="content-slider" id="slider">
     <div class="content-slider__arrow content-slider__arrow_left"></div>
@@ -30,7 +30,7 @@
     <div class="content-slider__arrow content-slider__arrow_right"></div>
   </div>
 </pre>
-</html>
+'''
 <pre>
 let slider = new ContentSlider({
   carousel: true,
