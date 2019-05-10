@@ -1,5 +1,6 @@
 # simple_content_slider
 
+<pre>
 const arg = {
   mainId: 'slider',
   btnClassLeft: 'content-slider__arrow_left',
@@ -17,3 +18,4 @@ const arg = {
 let slider = new ContentSlider(arg);
 
 slider.activateSlider();
+</pre>
