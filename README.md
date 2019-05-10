@@ -4,11 +4,3 @@
 <br/>
 <p>With this code you can create a simple slider for any content of you want.</p>
 
-<pre>
-let slider = new ContentSlider({
-  carousel: true,
-  flippingDirection: true,
-});
-
-slider.activateSlider();
-</pre>
