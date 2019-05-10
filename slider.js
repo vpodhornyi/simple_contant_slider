@@ -1,13 +1,22 @@
-function ContentSlider(arg) {
-  const carousel = arg.carousel || false;
-  const autoShow = arg.autoShow || false;
-  const btnHideClass = arg.hideBtn || 'arrow_hide';
-  const timeInterval = (arg.autoFlippingTime || 3) * 1000;
-  const pauseAutoShow = (arg.pauseAutoShow || 15) * 1000;
+function ContentSlider(param) {
+  const defaultParams = {
+    carousel: false,
+    autoShow: true,
+    autoFlippingTime: 3,
+    pauseAutoShow: 15,
+    flippingDirection: false,
+    mainId: 'slider',
+    btnClassHide: 'arrow_hide',
+    btnClassLeft: 'content-slider__arrow_left',
+    btnClassRight: 'content-slider__arrow_right',
+    contentClass: 'content-slider__item',
+    activeContentClass: 'content-slider__item_active',
+  };
+  const arg = {...defaultParams, ...param};
 
-  let intervalId = false;
-  let timeoutId = false;
-  let flippingDirection = arg.flippingDirection === 'right' || false; //true - Right, false - Left
+  let intervalId = 0;
+  let timeoutId = 0;
+  let flippingDirection = arg.flippingDirection || false; //true - Right, false - Left
 
   const id = document.querySelector(`#${arg.mainId}`);
   const btnLeft = document.querySelector(`.${arg.btnClassLeft}`);
@@ -41,7 +50,7 @@ function ContentSlider(arg) {
   }
 
   function toggleBtnHide(element) {
-    element.classList.toggle(btnHideClass);
+    element.classList.toggle(arg.btnClassHide);
   }
 
   function pressLeftBtn(ev) {
@@ -62,17 +71,17 @@ function ContentSlider(arg) {
 
   function flippingContentLeft() {
     const i = activeContent();
-    console.log('Il - ', i);
+
     if (i) {
       toggleContentItem(i);
       toggleContentItem(i - 1);
 
-      if (i === indexOfLastChild && !carousel) {
+      if (i === indexOfLastChild && !arg.carousel) {
         toggleBtnHide(btnRight);
         btnRight.classList.toggle(arg.btnClassRight);
       }
 
-      if (i - 1 === 0 && !carousel) {
+      if (i - 1 === 0 && !arg.carousel) {
         toggleBtnHide(btnLeft);
         btnLeft.classList.toggle(arg.btnClassLeft);
 
@@ -82,7 +91,7 @@ function ContentSlider(arg) {
       return i - 1;
     }
 
-    if (carousel) {
+    if (arg.carousel) {
       toggleContentItem(i);
       return toggleContentItem(indexOfLastChild);
     }
@@ -90,17 +99,17 @@ function ContentSlider(arg) {
 
   function flippingContentRight() {
     const i = activeContent();
-    console.log('Ir - ', i);
+
     if (i < indexOfLastChild) {
       toggleContentItem(i);
       toggleContentItem(i + 1);
 
-      if (i === 0 && !carousel) {
+      if (i === 0 && !arg.carousel) {
         toggleBtnHide(btnLeft);
         btnLeft.classList.toggle(arg.btnClassLeft);
       }
 
-      if (i + 1 === indexOfLastChild && !carousel) {
+      if (i + 1 === indexOfLastChild && !arg.carousel) {
         toggleBtnHide(btnRight);
         btnRight.classList.toggle(arg.btnClassRight);
 
@@ -109,7 +118,7 @@ function ContentSlider(arg) {
       return i + 1;
     }
 
-    if (carousel) {
+    if (arg.carousel) {
       toggleContentItem(i);
       return toggleContentItem(indexOfFirstChild);
     }
@@ -118,7 +127,7 @@ function ContentSlider(arg) {
   function autoFlipping() {
     return setInterval(function () {
       flippingDirection ? flippingContentRight() : flippingContentLeft();
-    }, timeInterval)
+    }, arg.autoFlippingTime * 1000)
   }
 
   function restartAutoShow() {
@@ -129,7 +138,7 @@ function ContentSlider(arg) {
 
       timeoutId = setTimeout(function () {
         intervalId = autoFlipping();
-      }, pauseAutoShow)
+      }, arg.pauseAutoShow * 1000)
     }
   }
 
@@ -153,7 +162,7 @@ function ContentSlider(arg) {
   function activateSlider() {
     id.addEventListener('click', main);
 
-    if (autoShow) {
+    if (arg.autoShow) {
       intervalId = autoFlipping();
     }
   }
