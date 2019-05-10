@@ -5,10 +5,11 @@ const arg = {
   hideBtn: 'content-slider__arrow_hide',
   contentClass: 'content-slider__item',
   activeContentClass: 'content-slider__item_active',
-  carousel: true,
+  carousel: false,
   autoShow: true,
   pauseAutoShow: 7,
   autoFlippingTime: 3,
+  flippingDirection: 'right',
 };
 
 let slider = new ContentSlider(arg);

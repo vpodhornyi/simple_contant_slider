@@ -7,7 +7,7 @@ function ContentSlider(arg) {
 
   let intervalId = false;
   let timeoutId = false;
-  let flippingDirection = true; //true - Right, false - Left
+  let flippingDirection = arg.flippingDirection === 'right' || false; //true - Right, false - Left
 
   const id = document.querySelector(`#${arg.mainId}`);
   const btnLeft = document.querySelector(`.${arg.btnClassLeft}`);
@@ -17,6 +17,22 @@ function ContentSlider(arg) {
   const contentsLength = contents.length;
   const indexOfLastChild = contentsLength - 1;
   const indexOfFirstChild = 0;
+
+  (function () {
+      const i = activeContent();
+      if (!arg.carousel && (i === 0 || i ===  indexOfLastChild)) {
+        if (i === 0) {
+          flippingDirection = true;
+          toggleBtnHide(btnLeft);
+          btnLeft.classList.toggle(arg.btnClassLeft);
+        } else {
+          flippingDirection = false;
+          toggleBtnHide(btnRight);
+          btnRight.classList.toggle(arg.btnClassRight);
+        }
+      }
+    }
+  )();
 
 
   function toggleContentItem(i) {
@@ -46,7 +62,7 @@ function ContentSlider(arg) {
 
   function flippingContentLeft() {
     const i = activeContent();
-
+    console.log('Il - ', i);
     if (i) {
       toggleContentItem(i);
       toggleContentItem(i - 1);
@@ -74,7 +90,7 @@ function ContentSlider(arg) {
 
   function flippingContentRight() {
     const i = activeContent();
-
+    console.log('Ir - ', i);
     if (i < indexOfLastChild) {
       toggleContentItem(i);
       toggleContentItem(i + 1);

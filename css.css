@@ -18,6 +18,16 @@
   transform: rotate(180deg);
 }
 
+.content-slider__arrow_hide {
+  cursor: auto;
+  opacity: 0;
+}
+
+.arrow_hide {
+  cursor: auto;
+  opacity: 0;
+}
+
 .content-slider_hide {
   cursor: auto;
   opacity: 0;
