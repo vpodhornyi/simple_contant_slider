@@ -4,8 +4,9 @@
 <br/>
 <p>With this code you can create a simple slider for any content of you want.</p>
 <h2>Step 1:</h2>
-<p>Create simple structure in yore html file</p>
-<p>To "content-slider__item" you can put any content of you want</p>
+<p>Create simple structure in your html file</p>
+<p>To "content-slider__item" container you can put any content of you want</p>
+```html
 <pre>
 <div class="content-slider" id="slider">
     <div class="content-slider__arrow content-slider__arrow_left"></div>

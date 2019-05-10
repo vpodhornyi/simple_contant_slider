@@ -4,3 +4,11 @@ let slider = new ContentSlider({
 });
 
 slider.activateSlider();
+
+let newsSlider = new ContentSlider({
+  mainId: 'news_slider',
+  flippingDirection: true,
+  autoFlippingTime: 5,
+});
+
+newsSlider.activateSlider();

@@ -19,10 +19,11 @@ function ContentSlider(param) {
   let flippingDirection = arg.flippingDirection || false; //true - Right, false - Left
 
   const id = document.querySelector(`#${arg.mainId}`);
-  const btnLeft = document.querySelector(`.${arg.btnClassLeft}`);
-  const btnRight = document.querySelector(`.${arg.btnClassRight}`);
+  const btnLeft = document.querySelector(`#${arg.mainId} .${arg.btnClassLeft}`);
+  const btnRight = document.querySelector(`#${arg.mainId} .${arg.btnClassRight}`);
 
-  const contents = document.querySelectorAll(`.${arg.contentClass}`);
+  const contents = document.querySelectorAll(`#${arg.mainId} .${arg.contentClass}`);
+  console.log(contents);
   const contentsLength = contents.length;
   const indexOfLastChild = contentsLength - 1;
   const indexOfFirstChild = 0;
