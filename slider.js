@@ -4,7 +4,7 @@ function ContentSlider(param) {
     autoShow: true,
     autoFlippingTime: 3,
     pauseAutoShow: 15,
-    flippingDirection: false,
+    flippingDirection: false, // true - right, false - left
     mainId: 'slider',
     btnClassHide: 'arrow_hide',
     btnClassLeft: 'content-slider__arrow_left',
