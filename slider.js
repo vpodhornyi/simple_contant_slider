@@ -1,5 +1,5 @@
-function ContentSlider(param) {
-  const defaultParams = {
+function ContentSlider(parameters) {
+  const defaultParameters = {
     carousel: false,
     autoShow: true,
     autoFlippingTime: 3,
@@ -12,7 +12,7 @@ function ContentSlider(param) {
     contentClass: 'content-slider__item',
     activeContentClass: 'content-slider__item_active',
   };
-  const arg = {...defaultParams, ...param};
+  const arg = {...defaultParameters, ...parameters};
 
   let intervalId = 0;
   let timeoutId = 0;
