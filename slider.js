@@ -30,8 +30,8 @@ function ContentSlider(param) {
 
   (function () {
       const i = activeContent();
-      if (!arg.carousel && (i === 0 || i ===  indexOfLastChild)) {
-        if (i === 0) {
+      if (!arg.carousel && (i === indexOfFirstChild || i ===  indexOfLastChild)) {
+        if (i === indexOfFirstChild) {
           flippingDirection = true;
           toggleBtnHide(btnLeft);
           btnLeft.classList.toggle(arg.btnClassLeft);
@@ -82,7 +82,7 @@ function ContentSlider(param) {
         btnRight.classList.toggle(arg.btnClassRight);
       }
 
-      if (i - 1 === 0 && !arg.carousel) {
+      if (i - 1 === indexOfFirstChild && !arg.carousel) {
         toggleBtnHide(btnLeft);
         btnLeft.classList.toggle(arg.btnClassLeft);
 
@@ -105,7 +105,7 @@ function ContentSlider(param) {
       toggleContentItem(i);
       toggleContentItem(i + 1);
 
-      if (i === 0 && !arg.carousel) {
+      if (i === indexOfFirstChild && !arg.carousel) {
         toggleBtnHide(btnLeft);
         btnLeft.classList.toggle(arg.btnClassLeft);
       }
