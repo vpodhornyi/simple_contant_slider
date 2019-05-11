@@ -17,7 +17,6 @@ function ContentSlider(parameters) {
 
   let intervalId = 0;
   let timeoutId = 0;
-  let flippingDirection = arg.flippingDirection || false; //true - Right, false - Left
 
   const id = document.querySelector(`#${arg.mainId}`);
   const btnLeft = document.querySelector(`#${arg.mainId} .${arg.btnClassLeft}`);
@@ -32,11 +31,11 @@ function ContentSlider(parameters) {
       const i = activeContent();
       if (!arg.noBtn && !arg.carousel && (i === indexOfFirstChild || i ===  indexOfLastChild)) {
         if (i === indexOfFirstChild) {
-          flippingDirection = true;
+          arg.flippingDirection = true;
           toggleBtnHide(btnLeft);
           btnLeft.classList.toggle(arg.btnClassLeft);
         } else {
-          flippingDirection = false;
+          arg.flippingDirection = false;
           toggleBtnHide(btnRight);
           btnRight.classList.toggle(arg.btnClassRight);
         }
@@ -87,7 +86,7 @@ function ContentSlider(parameters) {
           toggleBtnHide(btnLeft);
           btnLeft.classList.toggle(arg.btnClassLeft);
         }
-        if (!flippingDirection) flippingDirection = !flippingDirection;
+        if (!arg.flippingDirection) arg.flippingDirection = !arg.flippingDirection;
       }
 
       return i - 1;
@@ -117,7 +116,7 @@ function ContentSlider(parameters) {
           btnRight.classList.toggle(arg.btnClassRight);
         }
 
-        if (flippingDirection) flippingDirection = !flippingDirection;
+        if (arg.flippingDirection) arg.flippingDirection = !arg.flippingDirection;
       }
       return i + 1;
     }
@@ -130,7 +129,7 @@ function ContentSlider(parameters) {
 
   function autoFlipping() {
     return setInterval(function () {
-      flippingDirection ? flippingContentRight() : flippingContentLeft();
+      arg.flippingDirection ? flippingContentRight() : flippingContentLeft();
     }, arg.autoFlippingTime * 1000)
   }
 
@@ -151,13 +150,13 @@ function ContentSlider(parameters) {
 
       case pressLeftBtn(ev):
         restartAutoShow();
-        if (flippingDirection) flippingDirection = !flippingDirection;
+        if (arg.flippingDirection) arg.flippingDirection = !arg.flippingDirection;
         flippingContentLeft();
         break;
 
       case pressRightBtn(ev):
         restartAutoShow();
-        if (!flippingDirection) flippingDirection = !flippingDirection;
+        if (!arg.flippingDirection) arg.flippingDirection = !arg.flippingDirection;
         flippingContentRight();
         break;
     }
