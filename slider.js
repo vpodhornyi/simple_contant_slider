@@ -2,6 +2,7 @@ function ContentSlider(parameters) {
   const defaultParameters = {
     carousel: false,
     autoShow: true,
+    noBtn: false,
     autoFlippingTime: 3,
     pauseAutoShow: 15,
     flippingDirection: false, // true - right, false - left
@@ -23,14 +24,13 @@ function ContentSlider(parameters) {
   const btnRight = document.querySelector(`#${arg.mainId} .${arg.btnClassRight}`);
 
   const contents = document.querySelectorAll(`#${arg.mainId} .${arg.contentClass}`);
-  console.log(contents);
   const contentsLength = contents.length;
   const indexOfLastChild = contentsLength - 1;
   const indexOfFirstChild = 0;
 
   (function () {
       const i = activeContent();
-      if (!arg.carousel && (i === indexOfFirstChild || i ===  indexOfLastChild)) {
+      if (!arg.noBtn && !arg.carousel && (i === indexOfFirstChild || i ===  indexOfLastChild)) {
         if (i === indexOfFirstChild) {
           flippingDirection = true;
           toggleBtnHide(btnLeft);
@@ -77,15 +77,16 @@ function ContentSlider(parameters) {
       toggleContentItem(i);
       toggleContentItem(i - 1);
 
-      if (i === indexOfLastChild && !arg.carousel) {
+      if (i === indexOfLastChild && !arg.carousel && !arg.noBtn) {
         toggleBtnHide(btnRight);
         btnRight.classList.toggle(arg.btnClassRight);
       }
 
       if (i - 1 === indexOfFirstChild && !arg.carousel) {
-        toggleBtnHide(btnLeft);
-        btnLeft.classList.toggle(arg.btnClassLeft);
-
+        if(!arg.noBtn) {
+          toggleBtnHide(btnLeft);
+          btnLeft.classList.toggle(arg.btnClassLeft);
+        }
         if (!flippingDirection) flippingDirection = !flippingDirection;
       }
 
@@ -105,14 +106,16 @@ function ContentSlider(parameters) {
       toggleContentItem(i);
       toggleContentItem(i + 1);
 
-      if (i === indexOfFirstChild && !arg.carousel) {
+      if (i === indexOfFirstChild && !arg.carousel && !arg.noBtn) {
         toggleBtnHide(btnLeft);
         btnLeft.classList.toggle(arg.btnClassLeft);
       }
 
       if (i + 1 === indexOfLastChild && !arg.carousel) {
-        toggleBtnHide(btnRight);
-        btnRight.classList.toggle(arg.btnClassRight);
+        if(!arg.noBtn){
+          toggleBtnHide(btnRight);
+          btnRight.classList.toggle(arg.btnClassRight);
+        }
 
         if (flippingDirection) flippingDirection = !flippingDirection;
       }
